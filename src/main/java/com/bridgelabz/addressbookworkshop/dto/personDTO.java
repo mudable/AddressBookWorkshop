@@ -1,17 +1,18 @@
 package com.bridgelabz.addressbookworkshop.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
-public @Data class personDTO {
-	private int id ;
-	private String fname;
-	private String lname; 
-	private String gender;
-	private long phoneNumber;
-	private String emailAddress;
-	private String city;
-	private String state;
-	private String country;
-	private String address;
-	private String profilePic;
+@AllArgsConstructor
+public @Data class PersonDTO {
+	public int id ;
+	public String fname;
+	public String lname; 
+	public String gender;
+	public String phoneNumber;
+	public String emailAddress;
+	public String city;
+	public String state;
+	public String country;
+	public String address;
+	public String profilePic;
 }
