@@ -8,12 +8,12 @@ import com.bridgelabz.addressbookworkshop.model.PersonData;
 public interface IPersonService {
 	PersonData addperson(PersonDTO persondto);
 
-	PersonData UpdatePerson(PersonDTO persondto);
-
 	void deleteperson(int id);
 
 	List<PersonData> getAllPersonData();
 
 	PersonData getPersonDataById(int id);
+
+	PersonData UpdatePerson(int id, PersonDTO persondto);
 
 }

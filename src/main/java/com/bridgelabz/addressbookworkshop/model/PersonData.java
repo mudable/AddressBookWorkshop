@@ -23,6 +23,7 @@ public @Data class PersonData {
 	private String country;
 	private String address;
 	private String profilePic;
+	
 
 	public PersonData(PersonDTO persondto) {
 		this.id = persondto.id;
@@ -41,5 +42,9 @@ public @Data class PersonData {
 
 	public void UpdatePerson(PersonDTO persondto) {
 		//this.UpdatePerson(persondto);
+	}
+
+	public PersonData() {
+	
 	}
 }
