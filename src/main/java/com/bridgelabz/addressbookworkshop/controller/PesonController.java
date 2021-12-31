@@ -50,6 +50,9 @@ public class PesonController {
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}
 
+	/*
+	 * @PostMapping:pass the url. param:persondto object. return: person details
+	 */
 	@PostMapping("/create")
 	public ResponseEntity<ResponseDTO> addPersonData(@RequestBody PersonDTO persondto) {
 		PersonData personData = null;
@@ -57,6 +60,10 @@ public class PesonController {
 		ResponseDTO respDTO = new ResponseDTO("Create AddressBook Data:", personData);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}
+	/*
+	 * @putmapping:ural with id. param:id with persondto object. return:updated
+	 * data.
+	 */
 
 	@PutMapping("/update/{id}")
 	public ResponseEntity<ResponseDTO> UpdatePerson(@PathVariable("id") int id, @RequestBody PersonDTO persondto) {
@@ -66,9 +73,13 @@ public class PesonController {
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 
 	}
+	/*
+	 * @DeleteData:pass the URL with ID. 
+	 * return:delete the data of particular data.
+	 */
 
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<ResponseDTO> deleteperson(@PathVariable("Id") int id) {
+	public ResponseEntity<ResponseDTO> deleteperson(@PathVariable("id") int id) {
 		personService.deleteperson(id);
 		ResponseDTO respDTO = new ResponseDTO("Deleted Successful,Deleted Id:", id);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
