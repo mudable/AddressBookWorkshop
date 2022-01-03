@@ -2,6 +2,7 @@ package com.bridgelabz.addressbookworkshop.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.bridgelabz.addressbookworkshop.dto.PersonDTO;
 import com.bridgelabz.addressbookworkshop.model.PersonData;
 import com.bridgelabz.addressbookworkshop.repository.PersonRepository;
@@ -47,6 +48,7 @@ public class PersonService implements IPersonService {
 	public PersonData UpdatePerson(int id, PersonDTO persondto) {
 		PersonData personData = this.getPersonDataById(id);
 		personData.UpdatePerson(persondto);
+		//System.out.println(personData);
 		return personrepository.save(personData);
 	}
 	/*
@@ -58,4 +60,6 @@ public class PersonService implements IPersonService {
 		PersonData personData = this.getPersonDataById(id);
 		personrepository.delete(personData);
 	}
+	
+	
 }

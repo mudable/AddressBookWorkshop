@@ -61,7 +61,7 @@ public class PesonController {
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}
 	/*
-	 * @putmapping:ural with id. param:id with persondto object. return:updated
+	 * @putmapping:url with id. param:id with persondto object. return:updated
 	 * data.
 	 */
 
@@ -73,11 +73,10 @@ public class PesonController {
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 
 	}
-	/*
-	 * @DeleteData:pass the URL with ID. 
-	 * return:delete the data of particular data.
-	 */
 
+	/*
+	 * @DeleteData:pass the URL with ID. return:delete the data of particular data.
+	 */
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<ResponseDTO> deleteperson(@PathVariable("id") int id) {
 		personService.deleteperson(id);

@@ -15,4 +15,5 @@ public @Data class PersonDTO {
 	public String country;
 	public String address;
 	public String profilePic;
+	
 }

@@ -1,7 +1,11 @@
 package com.bridgelabz.addressbookworkshop.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.bridgelabz.addressbookworkshop.dto.PersonDTO;
@@ -9,9 +13,11 @@ import com.bridgelabz.addressbookworkshop.dto.PersonDTO;
 import lombok.Data;
 
 @Entity
-@Table(name = "AddressBokkData")
+@Table(name = "PersonData")
 public @Data class PersonData {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	private int id;
 	private String fname;
 	private String lname;
@@ -24,9 +30,15 @@ public @Data class PersonData {
 	private String address;
 	private String profilePic;
 	
+	//@ManyToOne
+	//private AddressBookData addressBookData;
 
 	public PersonData(PersonDTO persondto) {
-		this.id = persondto.id;
+		this.UpdatePerson(persondto);
+
+	}
+
+	public void UpdatePerson(PersonDTO persondto) {
 		this.fname = persondto.fname;
 		this.lname = persondto.lname;
 		this.gender = persondto.gender;
@@ -37,14 +49,9 @@ public @Data class PersonData {
 		this.country = persondto.country;
 		this.address = persondto.address;
 		this.profilePic = persondto.profilePic;
-
-	}
-
-	public void UpdatePerson(PersonDTO persondto) {
-		//this.UpdatePerson(persondto);
 	}
 
 	public PersonData() {
-	
+
 	}
 }
