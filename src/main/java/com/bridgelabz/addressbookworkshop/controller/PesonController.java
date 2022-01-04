@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.bridgelabz.addressbookworkshop.dto.PersonDTO;
 import com.bridgelabz.addressbookworkshop.dto.ResponseDTO;
@@ -21,7 +22,7 @@ import com.bridgelabz.addressbookworkshop.model.PersonData;
 import com.bridgelabz.addressbookworkshop.service.IPersonService;
 
 @RestController
-@RequestMapping("/addressbook")
+@RequestMapping("/person")
 public class PesonController {
 	@Autowired
 	private IPersonService personService;
@@ -30,7 +31,7 @@ public class PesonController {
 	 * @RequestMapping:Used to take the URL for displaying message. return:message.
 	 */
 	@RequestMapping(value = { "/get" })
-	public ResponseEntity<ResponseDTO> getAllPersonData() {
+	public ResponseEntity<ResponseDTO> getAllPersonData(@RequestParam int addressbookid) {
 		List<PersonData> personDataList = null;
 		personDataList = personService.getAllPersonData();
 		ResponseDTO respDTO = new ResponseDTO("Get call Successful:", personDataList);
@@ -43,7 +44,7 @@ public class PesonController {
 	 */
 
 	@GetMapping("/get/{id}")
-	public ResponseEntity<ResponseDTO> getPersonDataById(@PathVariable("id") int id) {
+	public ResponseEntity<ResponseDTO> getPersonDataById(@PathVariable("id") int id,@RequestParam int addressbookid) {
 		PersonData personData = null;
 		personData = personService.getPersonDataById(id);
 		ResponseDTO respDTO = new ResponseDTO("Get call for ID Successful:", personData);
@@ -54,9 +55,9 @@ public class PesonController {
 	 * @PostMapping:pass the url. param:persondto object. return: person details
 	 */
 	@PostMapping("/create")
-	public ResponseEntity<ResponseDTO> addPersonData(@RequestBody PersonDTO persondto) {
+	public ResponseEntity<ResponseDTO> addPersonData(@Valid @RequestBody PersonDTO persondto,@RequestParam int addressbookid) {
 		PersonData personData = null;
-		personData = personService.addperson(persondto);
+		personData = personService.addperson(persondto,addressbookid);
 		ResponseDTO respDTO = new ResponseDTO("Create AddressBook Data:", personData);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
 	}
@@ -66,7 +67,7 @@ public class PesonController {
 	 */
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<ResponseDTO> UpdatePerson(@PathVariable("id") int id, @RequestBody PersonDTO persondto) {
+	public ResponseEntity<ResponseDTO> UpdatePerson(@Valid @PathVariable("id") int id, @RequestBody PersonDTO persondto,@RequestParam int addressbookid) {
 		PersonData personData = null;
 		personData = personService.UpdatePerson(id, persondto);
 		ResponseDTO respDTO = new ResponseDTO("Update AddressBook Data Successful:", personData);
@@ -78,7 +79,7 @@ public class PesonController {
 	 * @DeleteData:pass the URL with ID. return:delete the data of particular data.
 	 */
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<ResponseDTO> deleteperson(@PathVariable("id") int id) {
+	public ResponseEntity<ResponseDTO> deleteperson(@PathVariable("id") int id,@RequestParam int addressbookid) {
 		personService.deleteperson(id);
 		ResponseDTO respDTO = new ResponseDTO("Deleted Successful,Deleted Id:", id);
 		return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);

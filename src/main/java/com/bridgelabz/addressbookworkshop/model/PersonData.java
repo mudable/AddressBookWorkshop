@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -30,8 +31,9 @@ public @Data class PersonData {
 	private String address;
 	private String profilePic;
 	
-	//@ManyToOne
-	//private AddressBookData addressBookData;
+	@ManyToOne
+	@JoinColumn(name = "add_id", referencedColumnName = "book_id")
+	private AddressBookData addressBookData;
 
 	public PersonData(PersonDTO persondto) {
 		this.UpdatePerson(persondto);
